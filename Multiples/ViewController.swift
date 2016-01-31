@@ -10,16 +10,47 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    //Variable
+    let maxCount = 100
+    var currentSum = 0
+    var multiple = 0
+    var newSum = 0
+    
+    //Outlets
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var multiples: UIImageView!
+    @IBOutlet weak var multiplyByHowMuch: UITextField!
+    @IBOutlet weak var equation: UILabel!
+    @IBOutlet weak var multiplyButon: UIButton!
+    
+    
+    //actions
+    @IBAction func startGame(sender: UIButton!) {
+        if multiplyByHowMuch.text != nil || multiplyByHowMuch.text != "" {
+            playButton.hidden = true
+            multiples.hidden = true
+            multiplyByHowMuch.hidden = true
+            multiplyButon.hidden = false
+            equation.hidden = false
+            
+            
+            multiple = Int(multiplyByHowMuch.text!)!
+            print(multiple)
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func multiply(sender: UIButton!) {
+        if currentSum <= maxCount {
+            newSum = currentSum + multiple
+            equation.text = "\(currentSum) + \(multiple) = \(newSum)"
+            currentSum = newSum
+        }
     }
-
+    
+    
+    
+    
 
 }
 
